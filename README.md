@@ -21,7 +21,7 @@ to the proper URLs
 
 for local server use:
 
-5. Clone the EMALocalServer repo
+5. Clone the EMALocalServer repo: https://github.com/ahadrovic/EMALocalServer
 6. Once downloaded, open Terminal
 7. navigate to the folder where the server files are located
 8. npm install 
