@@ -13,7 +13,7 @@ import Darwin
 
 
 
-class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
     
     
     
@@ -49,6 +49,11 @@ class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPi
         self.yesNoPicker.dataSource = self
         self.yesNoPicker.delegate = self
         
+        //need delegates for the text inputs so the keyboard can hide
+        self.fnameInput.delegate = self
+        self.lnameInput.delegate = self
+        self.positionInput.delegate = self
+        
         pickerData = ["Yes","No"]
         
         doneButton.isEnabled = false
@@ -83,6 +88,18 @@ class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
+    
+    //close keyboard on tap on touch screen
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //close keyboard on return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return(true)
+    }
+    
     
     @objc func editingChanged(_ textField: UITextField) {
         if textField.text?.count == 1 {
@@ -146,7 +163,7 @@ class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         //might change this to a heroku-app server.
         //for local tests, you need node, npm, and expressJS installed
-        Alamofire.request("http://localhost:3000/employees", method: .post,parameters:newEmplParams,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
+        Alamofire.request("https://emalocalserver.herokuapp.com/employees", method: .post,parameters:newEmplParams,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)

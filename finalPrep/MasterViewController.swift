@@ -67,7 +67,7 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        Alamofire.request("http://localhost:3000/employees").responseJSON { response in
+        Alamofire.request("https://emalocalserver.herokuapp.com/employees").responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -161,7 +161,7 @@ class MasterViewController: UITableViewController {
             
             let params = [ "id": selectedEmployee.id, "dob": selectedEmployee.dob ] as [String : Any]
             
-            Alamofire.request("http://localhost:3000/employees", method: .delete,parameters:params,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
+            Alamofire.request("https://emalocalserver.herokuapp.com/employees", method: .delete,parameters:params,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
