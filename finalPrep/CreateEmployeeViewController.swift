@@ -163,18 +163,23 @@ class CreateEmployeeViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         //might change this to a heroku-app server.
         //for local tests, you need node, npm, and expressJS installed
-        Alamofire.request("https://emalocalserver.herokuapp.com/employees", method: .post,parameters:newEmplParams,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
+        Alamofire.request("https://emalocalserver.herokuapp.com/em", method: .post,parameters:newEmplParams,encoding:JSONEncoding.default,headers:nil).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+                if(json["status"] == "valid"){
+                        self.performSegue(withIdentifier: "backToTable", sender: self)
+                }
+                else{
+                    
+                }
                 
             case .failure(let error):
                 print(error)
             }
         }
         
-        performSegue(withIdentifier: "backToTable", sender: self)
+        
         
     }
     

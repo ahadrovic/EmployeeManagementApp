@@ -23,7 +23,7 @@ class MasterViewController: UITableViewController {
         //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         //dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale!
         
-        Alamofire.request("http://localhost:3000/employees").responseJSON { response in
+        Alamofire.request("http://https://emalocalserver.herokuapp.com/employees").responseJSON { response in
             
             if let json = response.result.value {
                 print("JSON: \(json)") // serialized json response
@@ -97,7 +97,7 @@ class MasterViewController: UITableViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
+        //clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
 
@@ -117,12 +117,16 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                let controller = segue.destination as! DetailViewController
                 controller.detailEmployee = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 
     // MARK: - Table View
