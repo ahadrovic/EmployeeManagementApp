@@ -16,8 +16,7 @@ Note: These instructions assume you have gems installed on your Mac already
 3. Navigate to the folder where you cloned the repo
 4. pod install if the pods don't work, but they should
 
-if there is a heroku-app server available, simply change the URLs in the Alamofire requests
-to the proper URLs
+heroku app: https://emalocalserver.herokuapp.com/
 
 for local server use:
 
