@@ -1,5 +1,5 @@
 # EmployeeManagementApp
-This application is a Master Detail Application that uses the Alamfire and SwiftyJSON pods to Read,Create, and Delete Employees stored on a Server. You need Xcode 9.2 to open everything as a workspace. Otherwise, open the files individually and make a new project.
+This application is a Master Detail Application that uses the Alamofire and SwiftyJSON pods to Read,Create, and Delete Employees stored on a Server. You need Xcode 9.2 to open everything as a workspace. Otherwise, open the files individually and make a new project.
 
 
 # Requirements
